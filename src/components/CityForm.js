@@ -13,6 +13,8 @@ class FormCity extends React.Component {
       cityLon: '',
       cityLat: '',
       mapImg: '',
+      error: false,
+      errorMessage: '',
     }
   }
 
@@ -24,14 +26,19 @@ cityInput = (e) => {
 
 getCityData = async (e) => {
   e.preventDefault();
-  console.log('hello world');
-  let url = `https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.city}&format=json`
-  let cityData = await axios.get(url);
-  console.log(cityData.data[0]);
-  console.log(cityData);
-  this.setState({cityData: cityData.data[0]});
-  this.setState({cityLon: cityData.data[0].lon});
-  this.setState({cityLat: cityData.data[0].lat});
+  try {
+    let url = `https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.city}&format=json`
+    let cityData = await axios.get(url);
+    this.setState({cityData: cityData.data[0]});
+    this.setState({cityLon: cityData.data[0].lon});
+    this.setState({cityLat: cityData.data[0].lat});
+  }catch(error){
+    console.log(error)
+    this.setState({
+      error: true,
+      errorMessage: `An Error Occured: ${error.message}`
+    });
+  }
 }
 
 
@@ -49,7 +56,10 @@ getCityData = async (e) => {
         Explore!
       </Button>
     </Form>
-    
+    {this.state.error
+        ?
+        <p>{this.state.errorMessage}</p>
+        :
       <Card style={{ width: '18rem' }}>
       <Card.Img src={ `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.cityLat},${this.state.cityLon}&zoom=13&size=440x400`} alt = 'Picture of map'/>
       <Card.Body>
@@ -59,7 +69,7 @@ getCityData = async (e) => {
           Latitude: {this.state.cityLat}
         </Card.Text>
       </Card.Body>
-    </Card>
+    </Card>}
 
       
       </>

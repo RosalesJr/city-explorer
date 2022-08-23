@@ -32,6 +32,7 @@ Finish time: 2:15 pm
 
 Actual time needed to complete: 15 minutes
 
+<!-- next -->
 Name of feature: Set up your React Repository
 
 Estimate of time needed to complete: 2 hours
@@ -41,3 +42,40 @@ Start time: 5 pm
 Finish time: 6:15 pm
 
 Actual time needed to complete: 1 hour 15 minutes
+
+<!-- next -->
+
+Name of feature: display citie info
+
+Estimate of time needed to complete: 4 hours
+
+Start time: 7 pm
+
+Finish time: 9:39 pm
+
+Actual time needed to complete: 2 hour 40 minutes
+
+<!-- next -->
+
+Name of feature: display citie map
+
+Estimate of time needed to complete: 2 hours
+
+Start time: 9:40 pm
+
+Finish time: 10:25 pm
+
+Actual time needed to complete: less than an hour
+
+<!-- next -->
+
+Name of feature: display error message
+
+Estimate of time needed to complete: 2 hours
+
+Start time: 10:30 pm
+
+Finish time: 11 pm
+
+Actual time needed to complete: 30 minutes
+

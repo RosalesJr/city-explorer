@@ -1,4 +1,5 @@
 import FormCity from "./components/CityForm"
+import './css/app.css';
 
 
  function App() {

@@ -20,6 +20,8 @@
 ## Credit and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
 
+![WRRC](./src/img/My%20First%20Board%20(2).jpg)
+
 Name of feature: Web Request-Response Cycle
 
 Estimate of time needed to complete: 15 minutes

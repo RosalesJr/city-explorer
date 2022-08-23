@@ -12,6 +12,7 @@ class FormCity extends React.Component {
       city: '',
       cityLon: '',
       cityLat: '',
+      mapImg: '',
     }
   }
 
@@ -31,8 +32,8 @@ getCityData = async (e) => {
   this.setState({cityData: cityData.data[0]});
   this.setState({cityLon: cityData.data[0].lon});
   this.setState({cityLat: cityData.data[0].lat});
-  console.log('hello world');
 }
+
 
 
   render(){
@@ -50,7 +51,7 @@ getCityData = async (e) => {
     </Form>
     
       <Card style={{ width: '18rem' }}>
-      {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
+      <Card.Img src={ `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.cityLat},${this.state.cityLon}&zoom=13&size=440x400`} alt = 'Picture of map'/>
       <Card.Body>
         <Card.Title>{this.state.city}</Card.Title>
         <Card.Text>

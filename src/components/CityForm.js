@@ -13,6 +13,7 @@ class FormCity extends React.Component {
       cityLon: '',
       cityLat: '',
       mapImg: '',
+      weather: {},
       error: false,
       errorMessage: '',
     }

@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
 import Weather from "./Weather";
+import Movie from "./Movie";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 class FormCity extends React.Component {
@@ -11,14 +12,16 @@ class FormCity extends React.Component {
     super(props);
     this.state = {
       cityData: [],
-      city: '',
-      cityLon: '',
-      cityLat: '',
+      city: 'Seattle',
+      lat: '12',
+      lon: '10',
       mapImg: '',
       weatherArr: [],
+      movieArr: [],
       error: false,
       errorMessage: '',
       showWeather: false,
+      showMovie: false,
     }
   }
 
@@ -34,14 +37,19 @@ class FormCity extends React.Component {
       let url = `https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.city}&format=json`
       let cityData = await axios.get(url);
 
-      let weatherURL = `${process.env.REACT_APP_SERVER}/weather?city=${this.state.city}`;
+      let weatherURL =  `${process.env.REACT_APP_SERVER}/weather?city=${this.state.city}&lat=${this.state.lat}&lon=${this.state.lon}`
       let weatherArr = await axios.get(weatherURL);
 
+      let movieURL = `${process.env.REACT_APP_SERVER}/movies?city=${this.state.city}`
+      let movieArr = await axios.get(movieURL);
+
       this.setState({ cityData: cityData.data[0] });
-      this.setState({ cityLon: cityData.data[0].lon });
-      this.setState({ cityLat: cityData.data[0].lat });
+      this.setState({ lat: cityData.data[0].lat });
+      this.setState({ lon: cityData.data[0].lon });
       this.setState({ weatherArr: weatherArr.data });
+      this.setState({movieArr: movieArr.data})
       this.setState({showWeather: true})
+      this.setState({showMovie: true})
     } catch (error) {
       console.log(error)
       this.setState({
@@ -74,16 +82,17 @@ class FormCity extends React.Component {
           :
           <>
             <Card style={{ width: '18rem' }}>
-              <Card.Img src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.cityLat},${this.state.cityLon}&zoom=13&size=440x400`} alt='Picture of map' />
+              <Card.Img src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.lat},${this.state.lon}&zoom=13&size=440x400`} alt='Picture of map' />
               <Card.Body>
                 <Card.Title>{this.state.city}</Card.Title>
                 <Card.Text>
-                  Longitude: {this.state.cityLon}
-                  Latitude: {this.state.cityLat}
+                  Latitude: {this.state.lat}
+                  Longitude: {this.state.lon}
                 </Card.Text>
               </Card.Body>
             </Card>
             {this.state.showWeather &&<Weather weatherData={this.state.weatherArr} />}
+            {this.state.showMovie &&<Movie movieData={this.state.movieArr} />}
           </>
         }
 

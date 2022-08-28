@@ -24,6 +24,7 @@
 ![WRRC BACK-END](./src/img/Screenshot%20WRRC%20Back-end.png)
 ![WRRC WITH API](./src/img/Screenshot%20WWRC%20with%20api.png)
 ![WRRC FOR LAB09](./src/img/Screenshot%20WWRC%20lab09.png)
+![WRRC FOR LAB10](./src/img/Screenshot%20LAB10%20WRRC.png)
 
 Name of feature: Web Request-Response Cycle
 
